@@ -1,0 +1,79 @@
+- name: throughput
+  repetitions: 1
+  parallel: true
+  duration: 10m
+  clients: 1
+  members: 3
+  loadgenerator_hosts: loadgenerators
+  node_hosts: nodes
+  driver: hazelcast5
+  # version: maven=5.1 
+  version: maven=5.2.2-SNAPSHOT 
+  client_args: >
+      -Xms3g
+      -Xmx3g
+  member_args: >
+    -Xms3g
+    -Xmx3g
+  performance_monitor_interval_seconds: 1
+  verify_enabled: True
+  warmup_seconds: 0
+  cooldown_seconds: 0
+  test:
+      - class: com.hazelcast.simulator.tests.map.MapStoreTest
+        name: map-store-1
+        threadCount: 8
+        getProb: 0.8
+        putProb: 0.2
+        setProb: 0
+        putTTLProb: 0
+        putIfAbsentProb: 0
+        replaceProb: 0
+        getAsyncProb: 0
+        deleteProb: 0
+        destroyProb: 0
+        putAsyncProb: 0
+        loadAllProb: 0
+        keyCount: 1_000_000
+      - class: com.hazelcast.simulator.tests.map.MapStoreTest
+        name: map-store-2
+        threadCount: 8
+        getProb: 0.8
+        putProb: 0.2
+        setProb: 0
+        putTTLProb: 0
+        putIfAbsentProb: 0
+        replaceProb: 0
+        getAsyncProb: 0
+        deleteProb: 0
+        destroyProb: 0
+        putAsyncProb: 0
+        loadAllProb: 0
+        keyCount: 1_000_000  
+      - class: com.hazelcast.simulator.tests.map.MapStoreTest
+        name: map-store-3
+        threadCount: 8
+        getProb: 0.8
+        putProb: 0.2
+        setProb: 0
+        putTTLProb: 0
+        putIfAbsentProb: 0
+        replaceProb: 0
+        getAsyncProb: 0
+        deleteProb: 0
+        destroyProb: 0
+        putAsyncProb: 0
+        loadAllProb: 0
+        keyCount: 1_000_000    
+      - class: com.hazelcast.simulator.tests.map.LongStringMapTest
+        name: default1
+        threadCount: 8
+        getProb: 0.8
+        putProb: 0.2
+        keyDomain: 1_000_000  
+      - class: com.hazelcast.simulator.tests.map.LongStringMapTest
+        name: default2
+        threadCount: 8
+        getProb: 0.8
+        putProb: 0.2
+        keyDomain: 1_000_000    
